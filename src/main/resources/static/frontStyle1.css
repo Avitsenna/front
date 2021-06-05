@@ -1,0 +1,31 @@
+body {
+    padding-top: 5rem;
+    background-color: #8ebc00;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    background-color: greenyellow;
+    border-radius: 5px;
+
+}
+
+h1 {
+    color: #8ebc00;
+
+}
+
+h2 {
+    color: #8ebc00;
+}
+
+h3 {
+    color: #8ebc00;
+}
+
+td {
+    white-space: normal;
+    text-align: center;
+
+}
