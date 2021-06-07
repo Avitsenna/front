@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Controller
 public class MainController {
     //порт должен отличаться от порта у второй части - но главный порт - 8080
-    private final String url = "http://localhost:8090/news";// - для бека
+    private final String url = "http://localhost:8090/news";// - для бэка
     private final AtomicInteger atomicInteger;
 
     public MainController(AtomicInteger atomicInteger) {

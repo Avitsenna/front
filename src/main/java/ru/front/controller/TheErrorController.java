@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TheErrorController implements ErrorController {
 
     //здесь по идее должен быть @Override,но почему-то показывает ошибку при нем
-    //такое чувство, как будто проблема или в винде, или во моем коде...
+    //такое чувство, как будто проблема или в винде, или во моем коде...причем второй вариант более вероятен
     public String getErrorPath() {
         return "/error";
     }

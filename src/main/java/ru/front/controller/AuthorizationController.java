@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //все для авторизации
 @Controller
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthorizationController {
 //страница для входа/логина
     @GetMapping("/login")
     public String loginPage() {

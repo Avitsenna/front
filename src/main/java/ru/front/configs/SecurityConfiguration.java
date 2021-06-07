@@ -1,8 +1,5 @@
 package ru.front.configs;
 
-
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,26 +20,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                //.antMatchers("/").hasAnyAuthority("user:write")
                 .antMatchers("/").permitAll()//разрешение войти на эту страницу абсолютно любым
                 .antMatchers("/auth/login/**").anonymous()
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")//если есть роль админа, то открыты страницы для админов
+                //но страниц для админов пока нет
                 .and()
                 .formLogin()
-                .loginPage("/auth/login")//обозначение своей страницы для логинов
+                .loginPage("/login")//обозначение своей страницы для логинов
                 .defaultSuccessUrl("/")//если смог пройти -  это след. страница, типо перехода после логина
                 .and()
-                .rememberMe()//убирает нужду
+                .rememberMe()//функция "запомнить меня"
                 .and()
                 .logout()
                 .logoutUrl("/logout")//своя стпраница для выхода с акка
                 //все с логином
                 .clearAuthentication(true)//убирание аутентификации
-                .invalidateHttpSession(true)
+                .invalidateHttpSession(true)//сделать сессию HTTP
                 .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/");//-страница после выхода
     }
+    //не могу найти что не так с конфигом!
 
+    
     //для пароля защита
     @Bean
     protected PasswordEncoder passwordEncoder() {
@@ -57,14 +56,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //не забыть, что могут еще быть и те, кто еще не прошел логин - неизвестные
                 //тестовый АДМИН
                 User.builder()
-                        .username("Admin")
-                        .password(passwordEncoder().encode("password"))
+                        .username("Admin")//пароль
+                        .password(passwordEncoder().encode("Admin"))//login
                         .authorities(Roles.ADMIN.getAuthorities())
                         .build(),
                 //тестовый ЮЗЕР
                 User.builder()
-                        .username("Username")
-                        .password(passwordEncoder().encode("password"))
+                        .username("User")//логин
+                        .password(passwordEncoder().encode("User"))//пароль
                         .authorities(Roles.USER.getAuthorities())
                         .build()
 
